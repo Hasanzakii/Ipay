@@ -1,0 +1,5 @@
+*.sqlite*
+*public/storage*
+*public/hot*
+*storage/*.key*
+*.env*
