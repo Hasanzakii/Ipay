@@ -17,6 +17,7 @@ class Brand extends Model
     protected $guarded = [];
 
     #Accessor (we should write method name in camel_case Format)
+    #when we fetch data
     protected function brandImage(): Attribute
     {
         return Attribute::make(
