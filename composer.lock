@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0f17e329bf4a87bd6a1299f7fb46673",
+    "content-hash": "a8b9e2114caa2384079353dba99714ed",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -115,6 +115,59 @@
                 }
             ],
             "time": "2022-08-10T22:54:19+00:00"
+        },
+        {
+            "name": "caneara/quest",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/caneara/quest.git",
+                "reference": "e6bdd2b25bb899141edcd8f54f3101785c2b0f51"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/caneara/quest/zipball/e6bdd2b25bb899141edcd8f54f3101785c2b0f51",
+                "reference": "e6bdd2b25bb899141edcd8f54f3101785c2b0f51",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Quest\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Quest\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A package that provides pseudo fuzzy-searching to Laravel database queries.",
+            "homepage": "https://github.com/mattkingshott/quest",
+            "keywords": [
+                "fuzzy",
+                "laravel",
+                "php",
+                "quest",
+                "search"
+            ],
+            "support": {
+                "issues": "https://github.com/caneara/quest/issues",
+                "source": "https://github.com/caneara/quest/tree/v2.0.2"
+            },
+            "time": "2022-04-22T08:05:21+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -3624,6 +3677,62 @@
                 }
             ],
             "time": "2022-11-05T23:03:38+00:00"
+        },
+        {
+            "name": "saeedpooyanfar/zarinpal",
+            "version": "v5.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Saeed-Pooyanfar/zarinpal-laravel.git",
+                "reference": "b2a491892b46e2f22a49293dcf3fa273fbb370ab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Saeed-Pooyanfar/zarinpal-laravel/zipball/b2a491892b46e2f22a49293dcf3fa273fbb370ab",
+                "reference": "b2a491892b46e2f22a49293dcf3fa273fbb370ab",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7.2.0",
+                "php": "^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Zarinpal\\ZarinpalServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zarinpal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saeed Pooyanfar",
+                    "email": "saeedp47@gmail.com",
+                    "homepage": "https://github.com/Saeed-Pooyanfar"
+                }
+            ],
+            "description": "Zarinpal payment for Laravel Framework (with sandbox support)",
+            "keywords": [
+                "framework",
+                "laravel",
+                "payment",
+                "zarinpal"
+            ],
+            "support": {
+                "issues": "https://github.com/Saeed-Pooyanfar/zarinpal-laravel/issues",
+                "source": "https://github.com/Saeed-Pooyanfar/zarinpal-laravel/tree/v5.0.1"
+            },
+            "time": "2021-05-20T20:08:10+00:00"
         },
         {
             "name": "shakurov/coinbase",

@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Http\Services;
+
+use App\Models\Online_payment;
+use GuzzleHttp\Exception\RequestException;
+use Twilio\Http\GuzzleClient;
+
+class PaymentService
+{
+    public function paymentCallback()
+    {
+        $amount = 0;
+        $result = $this->zarinpalVerify($amount);
+        if ($result['success']) {
+            return 'ok';
+        }
+    }
+
+    // public function zarinpal()
+    // {
+    //     $amount = 0;
+    //     $merchentID = 12234343;
+    //     $sandbox = false;
+    //     $zarinpalGate = false;
+    //     $zarinpalGatePSP = '';
+    //     $client = new GuzzleClient($sandbox);
+    //     $zarinpal = new Zarinpal($merchentID, $client, $lang, $sandbox, $zarinpalGate);
+    //     $payment = [
+    //         'callback_url' => route('paymen-call-back'),
+    //         'amount' => $amount,
+    //         'descripion' => 'threOrder'
+    //     ];
+    //     try {
+    //         $response = $zarinpal->request($payment);
+    //         $onlinePayment = Online_payment::first();
+    //         $code = $response['data']['code'];
+    //         $message = $zarinpal->getCodeMessage($code);
+    //         if($code === 100){
+    //             $onlinePayment->update (['bank_first_response'=>($response)])
+    // $authority = $response['data']['authoriy'];
+    //         }
+    //     } catch (RequestException) {
+    //     }
+    // }
+
+    public function zarinpalVerify($amount)
+    {
+        $authority = $_GET['Authority'];
+        // $data = ['merchent_id' => 090923232];
+        
+    }
+}

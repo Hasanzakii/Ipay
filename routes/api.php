@@ -52,6 +52,5 @@ Route::post('/verify', [AuthOtpController::class, 'verify']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/settxid', [CryptoGatewayController::class, 'setTxid']);
 });
-
 Route::get('/redirecttotrul', [ShopController::class, 'RedirectToUrl']);
-
+Route::get('/search/{name}', [ShopController::class, 'search']);

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redis;
 use Symfony\Contracts\Service\Attribute\Required;
+use Illuminate\Database\Query\Builder;
 
 use function GuzzleHttp\Promise\all;
 
@@ -97,5 +98,12 @@ class ShopController extends Controller
     {
 
         return redirect('https://witel.ir/');
+    }
+    public function search($name)
+    {
+        // return Brand::where("brand_name", "like", "%" . $name . "%")->get();
+        $brandname = Brand::whereFuzzy('brand_name', $name)
+            ->first();
+        return $brandname;
     }
 }
