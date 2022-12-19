@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,5 @@ Route::get('/list', [UserController::class, 'List']);
 Route::get('/greeting', function () {
     return 'Hello World';
 });
+Route::get('/buy', [ShopController::class, 'buy']);
+// Route::post('/shop', [ShopController::class, 'shop']);

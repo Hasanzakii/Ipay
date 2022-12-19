@@ -106,4 +106,8 @@ class ShopController extends Controller
             ->first();
         return $brandname;
     }
+    public function buy()
+    {
+        return view('shop');
+    }
 }
