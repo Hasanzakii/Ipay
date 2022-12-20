@@ -10,18 +10,10 @@ use Request;
 
 class PaymentService
 {
-    public function paymentCallback()
+
+    public function zarinpal($amount, $order, $onlinepayment)
     {
-        $amount = 0;
-        # recive the amount back & check if is equal what should user pay and retive result
-        $result = $this->zarinpalVerify($amount);
-        if ($result['success']) {
-            return 'ok';
-        }
-    }
-    public function zarinpal()
-    {
-        $amount = 0;
+
         $sandbox = false;
         $zarinpalGate  = false;
         $merchentID = 1232432423;
@@ -30,7 +22,7 @@ class PaymentService
         $lang = 'fa';
         $zarinpal = new Zarinpal($merchentID, $client, $lang, $sandbox, $zarinpalGate, $zarinpalGatePSP);
         $payment = [
-            'callbackurl' => route('payment_callback'),
+            'callbackurl' => route('payment_callback', [$order]),
             'amount' => $amount
         ];
         try {

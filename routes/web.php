@@ -23,4 +23,5 @@ Route::get('/greeting', function () {
     return 'Hello World';
 });
 Route::get('/buy', [ShopController::class, 'buy']);
+Route::any('/payment_callback/{order}/{onlinePayment}', [ShopController::class, 'PaymentCallback'])->name('PaymentCallback');
 // Route::post('/shop', [ShopController::class, 'shop']);
