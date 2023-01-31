@@ -1,0 +1,23 @@
+#version of Docker-compose
+version: "3.8"
+# each services have their own DockerFile
+#for each service here we have to tell Docker how to build an image for that service
+services:
+  frotend:
+  # use build property to tell Docker where it can find it's DockerFile
+    build: ./frotend # This is where we have a Dockerfile( . = CurrentFolder)
+    #map port 3000 of the host to port 3000 of the container running this image
+    ports:
+      - 3000:3000
+  backend:
+    build: ./backend 
+    ports:
+      - 3001:3001
+    environment:
+      DB_URL : mongodb://db/Databsename
+    # for DB we're not going to build an image!, we pull an image from dockerhub 
+   # so we use image property not build
+  database:
+    image: mongo:4.0-xenial # mongo version 4 that built on top of ubuntu 16 . we hav mongo on top of windows but is too large
+    ports:
+      - 27017:27017

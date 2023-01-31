@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redis;
 use Symfony\Contracts\Service\Attribute\Required;
 use Illuminate\Database\Query\Builder;
+use PaymentService;
+use Pishran\Zarinpal\Zarinpal;
 use Quest\Macros\WhereFuzzy;
 
 use function GuzzleHttp\Promise\all;
@@ -41,13 +43,16 @@ class ShopController extends Controller
     //return all brand
     public function brands(Request $request)
     {
-
         $brands = Brand::all();
         return response()->json($brands);
-        #Redis
+        #Redislrhdsi 
         // $brand = Cache::remember('brands', 33600, function () {
         //     return Brand::all();
         // });
+    }
+    public function testAdmin()
+    {
+        return "Admin";
     }
 
     //return Product related to each brand
@@ -78,8 +83,6 @@ class ShopController extends Controller
         $order = Order::Create([
             'user_id' => Auth::user()->id,
             'product_id' => $request->product_id,
-
-
         ]);
         $UserOrder = Order::where('user_id', Auth::user()->id)->with('product.brand')->latest()->first();
         if ($order) {
@@ -114,27 +117,26 @@ class ShopController extends Controller
         return view('shop');
     }
 
-    public function paymentSubmit(Request $request)
+    public function paymentSubmit(Request $request, Zarinpal $zarinpal)
     {
         $userid = Auth::user()->id;
         $order = Order::where('user_id', $userid)->where('order_status', 0)->first();
-        switch ($request->payment_type) {
-            case '1':
-                $targetModel = OnlinePayment::class;
-                $type = 0;
-                break;
-            case '2':
-                $targetModel2 = CryptoPayment::class;
-                $type = 1;
-                break;
-        }
-        $paymented = $targetModel::create([
-            'amount' => $order->order_final_amount,
-            'user_id' => auth()->user()->id,
-            'status' => 1,
+        // switch ($request->payment_type) {
+        //     case '1':
+        //         $targetModel = OnlinePayment::class;
+        //         $type = 0;
+        //         break;
+        //     case '2':
+        //         $targetModel2 = CryptoPayment::class;
+        //         $type = 1;
+        //         break;
+        // }
+        $onlinepayment = OnlinePayment::create([
+            'user_id' => $userid,
         ]);
 
-        
+
+
         // $payment = Payment::create(
         //     [
         //         'amount' => $order->order_final_amount,

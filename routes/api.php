@@ -35,18 +35,18 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/getbrand', [ShopController::class, 'brands']);
     Route::post('/productofbrands', [ShopController::class, 'ProductOfBrands']);
+    Route::post('/createorder', [ShopController::class, 'CreateOrder']);
+    Route::get('/getorder', [ShopController::class, 'GetOrder']);
     Route::post('/addbrand', [ProductController::class, 'AddBrand']);
     Route::post('/deletebrand', [ProductController::class, 'DeleteBrand']);
     Route::post('/imagestore', [ProductController::class, 'imagestore']);
-    Route::post('/createorder', [ShopController::class, 'CreateOrder']);
-    Route::get('/getorder', [ShopController::class, 'GetOrder']);
     Route::post('/updatebrand', [ProductController::class, 'UpdateBrand']);
     Route::post('/addproduct', [ProductController::class, 'AddProduct']);/*  */
     Route::post('/deleteproduct', [ProductController::class, 'DeleteProduct']);
 });
 //OTP Login
 Route::post('/generate', [AuthOtpController::class, 'generate']);
-Route::post('/verify', [AuthOtpController::class, 'verify']);
+Route::middleware('throttle::verify-limiter')->post('/verify', [AuthOtpController::class, 'verify']);
 
 //CryptoGateway
 Route::group(['middleware' => ['auth:sanctum']], function () {
@@ -54,3 +54,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 Route::get('/redirecttotrul', [ShopController::class, 'RedirectToUrl']);
 Route::get('/search/{name}', [ShopController::class, 'search']);
+//Admin
+Route::group(['middleware' => ['auth', 'permission']], function () {
+    Route::get('/testAdmin', [ShopController::class, 'testAdmin']);
+});
