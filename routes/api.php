@@ -4,10 +4,14 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthOtpController;
 use App\Http\Controllers\CryptoGatewayController;
 use App\Http\Controllers\LoginRegisterController;
+use App\Http\Controllers\PermisionController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,7 +58,17 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 Route::get('/redirecttotrul', [ShopController::class, 'RedirectToUrl']);
 Route::get('/search/{name}', [ShopController::class, 'search']);
-//Admin
-Route::group(['middleware' => ['auth', 'permission']], function () {
-    Route::get('/testAdmin', [ShopController::class, 'testAdmin']);
+
+#Role and permision
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/createrole', [RoleController::class, 'CreateRole']);
+    Route::post('/createpermission', [PermissionController::class, 'CreatePermission']);
+    Route::post('/assignpermissiontorole', [RoleController::class, 'AssignPermissionToRole']);
+    Route::post('/assignroletouser', [RoleController::class, 'AssignRoleToUser']);
+    Route::post('/assignpermissiontouser', [RoleController::class, 'AssignPermissionToUser']);
+    Route::get('/roles', [RoleController::class, 'GetRolles']);
+    Route::get('/roles', [RoleController::class, 'GetRolles']);
 });
+
+Route::get('/testgate', [ProductController::class, 'testgate']);
+Route::get('/colsort', [ProductController::class, 'colsort']);

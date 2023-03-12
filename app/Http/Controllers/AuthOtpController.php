@@ -24,10 +24,10 @@ class AuthOtpController extends Controller
         $users->save();
         // if User doesn't exist ---> CreateUser
         // if (!$users) {
-        //     $users = User::create([
+        //     $users = User::create[
         //         'mobile_no' => $mobile_no,
         //     ]);
-        // }
+        // }z
         # User Does not Have Any Existing OTP
         $verificationCode = VerificationCode::where('user_id', $users->id)->latest()->first();
 

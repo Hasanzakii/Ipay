@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -73,6 +74,7 @@ class ProductController extends Controller
         if (!$validation) {
             return 'failed';
         }
+
         Brand::where('id', $request->id)->delete();
     }
     #Add NewProduct
@@ -82,11 +84,13 @@ class ProductController extends Controller
             'price' => 'required',
             'brand_id' => 'required'
         ])->validate();
+
         $newproduct = Product::Create([
             'brand_id' => $request->brand_id,
             'product_name' => $request->product,
             'price' => $request->price
         ]);
+
         if ($newproduct) {
             return response()->json([
                 'msg' => 'New product added succefully',
@@ -114,6 +118,18 @@ class ProductController extends Controller
             return response()->json([
                 'msg' => 'Failed nothing deltede'
             ]);
+        }
+    }
+ 
+    public function testgate()
+    {
+
+        if (Gate::allows('isAdmin')) {
+
+            dd('Admin allowed');
+        } else {
+
+            dd('You are not Admin');
         }
     }
 }

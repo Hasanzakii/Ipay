@@ -7,17 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
 
     # The attributes that are mass assignable.
 
     # @var array<int, string>
-
+    protected $guard_name = 'sanctum';
     protected $guarded = [
         'id',
         'status',
@@ -62,9 +63,11 @@ class User extends Model
         return $this->hasMany(Product::class);
     }
     public function orders()
-
     {
-
         return $this->hasMany(Order::class);
+    }
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 }
