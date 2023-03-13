@@ -20,6 +20,9 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             User::where('status', 0)->delete();
         })->everyFiveMinutes();
+        // Run the GitAutoPush command every hour
+        $schedule->command('git:auto-push')->everyMinute()
+        ;
     }
 
     /**
@@ -29,7 +32,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
