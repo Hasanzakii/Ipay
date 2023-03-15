@@ -16,8 +16,8 @@ class User extends Model
 
 
     # The attributes that are mass assignable.
-
     # @var array<int, string>
+    protected $table = "users";
     protected $guard_name = 'sanctum';
     protected $guarded = [
         'id',
@@ -53,7 +53,6 @@ class User extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    protected $table = "users";
     /**
      * Get the post that owns the comment.
      */
@@ -65,9 +64,5 @@ class User extends Model
     public function orders()
     {
         return $this->hasMany(Order::class);
-    }
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
     }
 }

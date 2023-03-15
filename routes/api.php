@@ -67,7 +67,22 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/assignroletouser', [RoleController::class, 'AssignRoleToUser']);
     Route::post('/assignpermissiontouser', [RoleController::class, 'AssignPermissionToUser']);
     Route::get('/roles', [RoleController::class, 'GetRolles']);
-    Route::get('/roles', [RoleController::class, 'GetRolles']);
+    Route::get('/permissions', [RoleController::class, 'GetPermissions']);
+    Route::post('/userhasrole', [RoleController::class, 'UserHasRole']);
+    Route::post('/rolehaspermission', [RoleController::class, 'RoleHasPermission']);
+    Route::post('/userhaspermission', [RoleController::class, 'UserHasPermission']);
+    Route::post('/userhasthispermissions', [RoleController::class, 'UserHasThisPermissions']);
+    Route::post('/smpr', [RoleController::class, 'SMPR']);
+    Route::post('/smpu', [RoleController::class, 'SMPU']);
+    Route::post('/revokeuserrole', [RoleController::class, 'RevokeUserRole']);
+    Route::post('/deleterole', [RoleController::class, 'DeleteRole']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::middleware(['role:Admin'])->get('/test1', [RoleController::class, 'test1']);
+    Route::middleware(['role:SuperAdmin'])->get('/test2', [RoleController::class, 'test2']);
+    Route::middleware(['role:user'])->put('/test3', [RoleController::class, 'test3']);
+    Route::middleware(['role:Tset'])->delete('/test4', [RoleController::class, 'test4']);
 });
 
 Route::get('/testgate', [ProductController::class, 'testgate']);
