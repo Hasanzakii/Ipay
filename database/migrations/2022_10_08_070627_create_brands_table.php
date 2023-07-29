@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('image')->nullable();
-            $table->tinyInteger('status')->default(0);
+            $table->string('brand_name')->nullable();
+            $table->string('brand_image')->nullable();
+            $table->tinyInteger('brand_status')->default(0);
             $table->tinyInteger('Show_in_menu')->default(0);
             $table->timestamps();
             $table->softDeletes();

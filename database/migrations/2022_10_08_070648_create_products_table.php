@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('brand_id');
-            $table->string('name');
+            $table->string('product_name')->nullable();
+            $table->string('product_image')->nullable();
             $table->text('introduction');
-            $table->text('image');
-            $table->decimal('price', 8, 3);
+            $table->string('price')->nullable();
             $table->tinyInteger('marketable')->default(1)->comment('1 => marketable, 0 => not marketable');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
@@ -27,7 +27,6 @@ return new class extends Migration
                 ->references('id')->on('brands')->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *
