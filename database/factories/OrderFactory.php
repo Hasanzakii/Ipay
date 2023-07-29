@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Payment;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,9 +20,12 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => '1',
-            'product_id' => '1',
-            'payment_id' => '1',
+            'user_id' => User::factory(),
+            'product_id' => Product::factory(),
+            'payment_id' => Payment::factory(),
+            'mobile_no' => function (array $attributes) {
+                return User::find($attributes['user_id'])->mobile_no;
+            }
         ];
     }
 }

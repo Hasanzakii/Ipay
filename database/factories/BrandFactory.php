@@ -18,8 +18,12 @@ class BrandFactory extends Factory
      */
     public function definition()
     {
+        $enum = [0, 1];
+
+
         return [
-            'brand_name' => 'irancell',
+            'brand_name' => $this->faker->randomElement(["Asiacell", "Korek", "Zain"]),
+            "brand_status" => $this->faker->randomElement($enum)
         ];
     }
 }

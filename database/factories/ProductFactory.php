@@ -18,10 +18,14 @@ class ProductFactory extends Factory
     public function definition()
     {
 
+        $enum = [0, 1];
         return [
             'brand_id' => Brand::factory(),
             'product_name' => fake()->name(),
             'price' => fake()->randomDigit(),
+            'status' => $this->faker->numberBetween(0, 1),
+            'marketable' => 1,
+            'introduction' => $this->faker->text(150),
         ];
     }
 }
